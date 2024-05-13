@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "test", value = "/test")
+@WebServlet(name = "test", urlPatterns = "/my2")
 public class Hellotest extends HttpServlet {
     private String message;
 
     public void init() {
-        message = "test";
+        message = "오늘 점심 도시락 먹음";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
