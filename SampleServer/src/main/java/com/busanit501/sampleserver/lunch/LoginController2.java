@@ -17,7 +17,7 @@ public class LoginController2 extends HttpServlet {
         System.out.println("lunch-result post 받기");
         String lunch = req.getParameter("mlunch");
 
-        if (lunch.equals("mac") ) {
+        if (lunch.equals("맥도날드") ) {
             // 메인, index 로가기.
             System.out.println("정답 입력 ");
             resp.sendRedirect("/index.jsp");
