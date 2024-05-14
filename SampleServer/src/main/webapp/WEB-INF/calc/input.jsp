@@ -5,7 +5,7 @@
   <title>JSP2 - input.jsp</title>
 </head>
 <body>
-<form action="result1.jsp" method="post">
+<form action="/calc/input" method="post">
   <input type="number" name="num1">
   <input type="number" name="num2">
   <button type="submit">전송</button>
