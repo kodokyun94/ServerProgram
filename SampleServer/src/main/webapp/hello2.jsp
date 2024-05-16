@@ -5,8 +5,8 @@
   <title>JSP2 - Hello World2</title>
 </head>
 <body>
-<h1><%= "Hello World!" %></h1>
-<h1><%= "오늘 점심 뭐먹음?!" %></h1>
+<h1><%= "JSP-Model2(MVC) - todolist" %></h1>
+<h1><%= "임시 todolist 화면" %></h1>
 <br/>
 <a href="my2">my2</a>
 </body>
