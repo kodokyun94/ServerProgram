@@ -14,7 +14,8 @@ public enum MemberService {
     }
 
     public List<MemberDTO> getList() {
-        List<MemberDTO> listSample = IntStream.range(0, 10).mapToObj(i -> {
+        List<MemberDTO> listSample = IntStream.range(0, 10).mapToObj
+                (i -> {
             MemberDTO dto = new MemberDTO();
             dto.setMemberNo((long)i);
             dto.setMemberTitle("Sample Menu Title " + i);
