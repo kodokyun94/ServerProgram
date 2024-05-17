@@ -1,12 +1,42 @@
 package com.busanit501.sampleserver.connectTest;
 
+import com.busanit501.sampleserver.connectTest.todo.domain.TodoVO;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.time.LocalDate;
 
 public class ConnectDbTest {
+    @Test
+    public void testHikariCP() throws Exception {
+        HikariConfig config = new HikariConfig();
+        config.setDriverClassName("org.mariadb.jdbc.Driver");
+        config.setJdbcUrl("jdbc:mariadb://localhost:3306/webdb");
+        config.setUsername("webuser");
+        config.setPassword("webuser");
+        config.addDataSourceProperty("cachePrepStmts", "true");
+        config.addDataSourceProperty("prepStmtCacheSize", "250");
+        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+
+        HikariDataSource dataSource = new HikariDataSource(config);
+        Connection conn = dataSource.getConnection();
+        System.out.println(conn);
+        conn.close();
+    }
+
+    @Test
+    public  void test2(){
+        TodoVO todo = TodoVO.builder()
+                .tno(100L)
+                .title("제목100")
+                .dueDate(LocalDate.now())
+                .build();
+    }
+
     @Test
     public void test() {
         int v1 = 100;
