@@ -19,7 +19,6 @@ public enum MapperUtil {
     }
 
     public ModelMapper get() {
-
         return modelMapper;
     }
 }
