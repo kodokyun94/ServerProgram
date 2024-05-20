@@ -89,7 +89,6 @@ public class TodoDAO {
         pstmt.setString(1,todoVO1.getTitle());
         pstmt.setDate(2, Date.valueOf(todoVO1.getDueDate()));
         pstmt.setBoolean(3, todoVO1.isFinished());
-        @Cleanup ResultSet resultSet = pstmt.executeQuery();
         pstmt.executeUpdate();
     }
 
