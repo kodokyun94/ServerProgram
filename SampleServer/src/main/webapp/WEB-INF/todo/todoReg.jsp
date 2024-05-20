@@ -9,7 +9,16 @@
 <br>
 <h1><%= "임시 Reg화면" %></h1>
 <form method="post" action="/todo/register">
+  <div>
+  <input type="text" name="title" placeholder="제목을 입력해주세요">
+  </div>
+  <div>
+    <input type="date" name="dueDate" >
+  </div>
+  <div>
+    <button type="reset">리셋</button>
   <button type="submit">작성</button>
+  </div>
 </form>
 </body>
 </html>

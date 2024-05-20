@@ -1,4 +1,4 @@
-package com.busanit501.sampleserver.connectTest.todo;
+package com.busanit501.sampleserver.connectTest.todo.controller;
 
 import com.busanit501.sampleserver.connectTest.HelloServlet;
 
