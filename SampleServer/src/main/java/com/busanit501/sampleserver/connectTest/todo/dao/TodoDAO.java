@@ -5,6 +5,7 @@ import com.busanit501.sampleserver.connectTest.todo.domain.TodoVO;
 import lombok.Cleanup;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -17,7 +18,8 @@ public class TodoDAO {
         @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setLong(1, tno);
-        @Cleanup ResultSet resultSet = pstmt.executeQuery();
+        @Cleanup ResultSet resultSet = pstmt.executeQuery
+                ();
 
         resultSet.next();
         TodoVO todoVO = TodoVO.builder()
@@ -79,11 +81,43 @@ public class TodoDAO {
     }
 
     // 쓰기 insert
+    public void insert(TodoVO todoVO1) throws Exception {
+        String sql = "insert into tbl_todo (title, dueDate, finished) values (?,?,?)";
+        //1)
+        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1,todoVO1.getTitle());
+        pstmt.setDate(2, Date.valueOf(todoVO1.getDueDate()));
+        pstmt.setBoolean(3, todoVO1.isFinished());
+        @Cleanup ResultSet resultSet = pstmt.executeQuery();
+        pstmt.executeUpdate();
+    }
 
     // 수정 update
+    public void  update(TodoVO todoVO) throws Exception {
+        String sql = "update tbl_todo set finished = ?, title = ?, dueDate = ? where tno = ?";
+        //1)
+        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+
+        pstmt.setBoolean(1, todoVO.isFinished());
+        pstmt.setString(2,todoVO.getTitle());
+        pstmt.setDate(3, Date.valueOf(todoVO.getDueDate()));
+        pstmt.setLong(4, todoVO.getTno());
+
+        pstmt.executeUpdate();
+    }
 
     // 삭제 delete
-
+    public void  delete(Long tno) throws Exception {
+        String sql = "delete from tbl_todo where tno=?";
+        //1)
+        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setLong(1,tno);
+        @Cleanup ResultSet resultSet = pstmt.executeQuery();
+        pstmt.executeUpdate();
+    }
 
 
     public String  getTime2() throws Exception{

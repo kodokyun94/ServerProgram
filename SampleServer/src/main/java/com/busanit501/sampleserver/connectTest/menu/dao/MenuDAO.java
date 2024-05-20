@@ -5,6 +5,7 @@ import com.busanit501.sampleserver.connectTest.todo.dao.ConnectionUtil;
 import lombok.Cleanup;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -28,5 +29,57 @@ public class MenuDAO {
             samples.add(MenuVOBuilder);
         }
         return samples;
+    }
+
+    public MenuVO selectOne(Long menuNo) throws Exception {
+        String sql = "select * from lunchMenu where menuNo = ?";
+        //1)
+        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setLong(1, menuNo);
+        @Cleanup ResultSet resultSet = pstmt.executeQuery();
+
+        resultSet.next();
+        MenuVO menuVO = MenuVO.builder()
+                .menuNo(resultSet.getLong("menuNo"))
+                .MenuTitle(resultSet.getString("MenuTitle"))
+                .MenuRegDate(resultSet.getDate("MenuRegDate").toLocalDate())
+                .build();
+        return menuVO;
+    }
+
+    public void insert(MenuVO menuVO1) throws Exception {
+        String sql = "insert into lunchMenu (MenuTitle, MenuRegDate) values (?,?)";
+
+        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1,menuVO1.getMenuTitle());
+        pstmt.setDate(2, Date.valueOf(menuVO1.getMenuRegDate()));;
+        @Cleanup ResultSet resultSet = pstmt.executeQuery();
+        pstmt.executeUpdate();
+    }
+
+    public void  delete(Long menuNo) throws Exception {
+        String sql = "delete from lunchMenu where menuNo=?";
+
+        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setLong(1,menuNo);
+        @Cleanup ResultSet resultSet = pstmt.executeQuery();
+        pstmt.executeUpdate();
+    }
+
+    public void  update(MenuVO menuVO) throws Exception {
+        String sql = "update lunchMenu set  MenuTitle = ?, MenuRegDate = ? where MenuNo = ?";
+        //1)
+        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+
+
+        pstmt.setString(1,menuVO.getMenuTitle());
+        pstmt.setDate(2, Date.valueOf(menuVO.getMenuRegDate()));
+        pstmt.setLong(3, menuVO.getMenuNo());
+
+        pstmt.executeUpdate();
     }
 }
