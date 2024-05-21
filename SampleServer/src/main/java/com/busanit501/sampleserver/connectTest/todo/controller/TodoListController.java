@@ -32,6 +32,8 @@ public class TodoListController extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/todo/todoList.jsp");
             requestDispatcher.forward(req, resp);
         } catch (Exception e) {
+
+
             throw new RuntimeException(e);
         }
 

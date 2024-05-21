@@ -18,17 +18,21 @@ public class TodoRegController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //todo 글 입력 폼
-
+        //화면 입력 폼
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/todo/todoReg.jsp");
         requestDispatcher.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //로직처리
+
         TodoDTO todoDTO = TodoDTO.builder()
                 .title(req.getParameter("title"))
                 .dueDate(LocalDate.parse(req.getParameter("dueDate")))
                 .build();
+
+        //등록
         try {
             todoService.register2(todoDTO);
             resp.sendRedirect("/todo/list");

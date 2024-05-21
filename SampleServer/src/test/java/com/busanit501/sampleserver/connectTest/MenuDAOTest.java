@@ -87,8 +87,8 @@ public class MenuDAOTest {
     @Test
     public void insert() throws Exception {
         MenuVO menuVO1 = MenuVO.builder()
-                .MenuTitle("오늘 점심 뭐 먹지? 22")
-                .MenuRegDate(LocalDate.of(2024,5,20))
+                .menuTitle("오늘 점심 뭐 먹지? 22")
+                .menuRegDate(LocalDate.of(2024,5,20))
                 .build();
         menuDAO.insert(menuVO1);
     }
@@ -101,8 +101,8 @@ public class MenuDAOTest {
     @Test
     public void update() throws Exception {
         MenuVO menuVO = MenuVO.builder().menuNo(4L)
-                .MenuTitle("오늘 점심 뭐 먹지? update22")
-                .MenuRegDate(LocalDate.now())
+                .menuTitle("오늘 점심 뭐 먹지? update22")
+                .menuRegDate(LocalDate.now())
                 .build();
         menuDAO.update(menuVO);
     }

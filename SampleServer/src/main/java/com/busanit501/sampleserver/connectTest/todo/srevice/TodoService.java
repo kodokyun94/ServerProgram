@@ -39,7 +39,12 @@ public enum TodoService {
     }
 
     //하나 조회
-
+    public TodoDTO getSelectOne(Long tno) throws Exception {
+        TodoVO sample = todoDAO.selectOne(tno);
+        log.info("sampleList 확인1" + sample);
+        TodoDTO todoDTO =  modelMapper.map(sample,TodoDTO.class);
+        return todoDTO;
+    }
 
     //수정
 

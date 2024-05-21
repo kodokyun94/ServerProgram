@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MenuDAO {
     public List<MenuVO> selectAll() throws Exception {
-        String sql = "select * from lunchmenu ";
+        String sql = "select * from lunchmenu";
         @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
         @Cleanup ResultSet resultSet = pstmt.executeQuery();
@@ -22,8 +22,8 @@ public class MenuDAO {
         while (resultSet.next()){
             MenuVO MenuVOBuilder = MenuVO.builder()
                     .menuNo (resultSet.getLong("menuNo"))
-                    .MenuTitle (resultSet.getString("MenuTitle"))
-                    .MenuRegDate(resultSet.getDate("MenuRegDate").toLocalDate())
+                    .menuTitle (resultSet.getString("menuTitle"))
+                    .menuRegDate(resultSet.getDate("menuRegDate").toLocalDate())
                     .build();
             // 리스트에 담기.
             samples.add(MenuVOBuilder);
@@ -42,8 +42,8 @@ public class MenuDAO {
         resultSet.next();
         MenuVO menuVO = MenuVO.builder()
                 .menuNo(resultSet.getLong("menuNo"))
-                .MenuTitle(resultSet.getString("MenuTitle"))
-                .MenuRegDate(resultSet.getDate("MenuRegDate").toLocalDate())
+                .menuTitle(resultSet.getString("menuTitle"))
+                .menuRegDate(resultSet.getDate("menuRegDate").toLocalDate())
                 .build();
         return menuVO;
     }

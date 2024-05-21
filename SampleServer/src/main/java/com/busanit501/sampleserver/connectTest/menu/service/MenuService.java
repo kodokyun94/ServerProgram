@@ -1,26 +1,38 @@
 package com.busanit501.sampleserver.connectTest.menu.service;
 
+import com.busanit501.sampleserver.connectTest.menu.dao.MenuDAO;
+import com.busanit501.sampleserver.connectTest.menu.domain.MenuVO;
 import com.busanit501.sampleserver.connectTest.menu.dto.MenuDTO;
+import com.busanit501.sampleserver.connectTest.todo.util.MapperUtil;
+import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
+@Log4j2
 public enum MenuService {
     INSTANCE;
+
+    private MenuDAO menuDAO;
+    private ModelMapper modelMapper;
+
+    MenuService() {
+        menuDAO = new MenuDAO();
+        modelMapper = MapperUtil.INSTANCE.get();
+    }
+
     public void register(MenuDTO dto){
         System.out.println("debug register dto 확인중 : " + dto);
     }
 
-    public List<MenuDTO> getList() {
-        List<MenuDTO> listSample = IntStream.range(0, 10).mapToObj(i -> {
-            MenuDTO dto = new MenuDTO();
-            dto.setMno((long)i);
-            dto.setName("Sample Menu Title " + i);
-            dto.setDueDate(LocalDate.now());
-            return dto;
-        }).collect(Collectors.toList());
-        return listSample;
+    public List<MenuDTO> getList() throws Exception {
+        List<MenuVO> sampleList = menuDAO.selectAll();
+        log.info("sampleList 확인1" + sampleList);
+        List<MenuDTO> sampleDtoList = sampleList.stream()
+                .map(vo -> modelMapper.map(vo,MenuDTO.class))
+                .collect(Collectors.toList());
+        return sampleDtoList;
     };
+
+
 }

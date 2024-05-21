@@ -1,42 +1,21 @@
 package com.busanit501.sampleserver.connectTest.menu.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 
+
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MenuDTO {
-    private long mno;
-    private String name;
-    private LocalDate dueDate;
-
-    @Override
-    public String toString() {
-        return "MenuDTO{" +
-                "mno=" + mno +
-                ", name='" + name + '\'' +
-                ", dueDate=" + dueDate +
-                '}';
-    }
-
-    public long getMno() {
-        return mno;
-    }
-
-    public void setMno(long mno) {
-        this.mno = mno;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
+    private long menuNo;
+    private String menuTitle;
+    private LocalDate menuRegDate;
 }
+
+

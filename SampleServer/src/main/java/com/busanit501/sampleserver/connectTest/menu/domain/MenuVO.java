@@ -12,8 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class MenuVO {
         private Long menuNo;
-        private String MenuTitle ;
-        private LocalDate MenuRegDate;
-
+        private String menuTitle ;
+        private LocalDate menuRegDate;
     }
 
