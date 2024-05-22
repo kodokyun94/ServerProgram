@@ -15,14 +15,14 @@ import java.util.List;
 
 @Log4j2
 @WebServlet (name = "MenuController2", urlPatterns = "/menu/list")
-public class MenuController2 extends HttpServlet {
+public class MenuListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<MenuDTO> sampleList = null;
         try {
-            sampleList = MenuService.INSTANCE.getList();
+            sampleList = MenuService.INSTANCE.listAll();
             req.setAttribute("list",sampleList);
-log.info("sampleList" + sampleList);
+            log.info("sampleList" + sampleList);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher
                     ("/WEB-INF/menu/menuList.jsp" );
             requestDispatcher.forward(req,resp);

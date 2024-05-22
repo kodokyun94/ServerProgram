@@ -18,6 +18,7 @@ public class MenuDAO {
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
         @Cleanup ResultSet resultSet = pstmt.executeQuery();
         // 디비에서 조회한 데이터 내용들을 담을 임시 List 가 필요함. 여기에 담을 예정.
+
         List<MenuVO> samples = new ArrayList<MenuVO>();
         while (resultSet.next()){
             MenuVO MenuVOBuilder = MenuVO.builder()
@@ -39,6 +40,7 @@ public class MenuDAO {
         pstmt.setLong(1, menuNo);
         @Cleanup ResultSet resultSet = pstmt.executeQuery();
 
+
         resultSet.next();
         MenuVO menuVO = MenuVO.builder()
                 .menuNo(resultSet.getLong("menuNo"))
@@ -49,13 +51,12 @@ public class MenuDAO {
     }
 
     public void insert(MenuVO menuVO1) throws Exception {
-        String sql = "insert into lunchMenu (MenuTitle, MenuRegDate) values (?,?)";
+        String sql = "insert into lunchMenu (menuTitle, menuRegDate) values (?,?)";
 
         @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1,menuVO1.getMenuTitle());
         pstmt.setDate(2, Date.valueOf(menuVO1.getMenuRegDate()));;
-        @Cleanup ResultSet resultSet = pstmt.executeQuery();
         pstmt.executeUpdate();
     }
 
@@ -70,7 +71,7 @@ public class MenuDAO {
     }
 
     public void  update(MenuVO menuVO) throws Exception {
-        String sql = "update lunchMenu set  MenuTitle = ?, MenuRegDate = ? where MenuNo = ?";
+        String sql = "update lunchMenu set  menuTitle = ?, menuRegDate = ? where menuNo = ?";
         //1)
         @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);

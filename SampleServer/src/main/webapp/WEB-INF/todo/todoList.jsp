@@ -8,8 +8,29 @@
 </head>
 <body>
 <ul>
+  <h1>${memberDTO.mname}님 환영합니다.</h1>
+  <div>
+    <form method="post" action="/logout">
+      <button type="submit">로그아웃</button>
+    </form>
+
+  </div>
+  <button><a href="/todo/register">Todo 작성</a></button>
 <c:forEach items="${list}" var = "dto">
-  <li>${dto}</li>
+  <li>
+    <span>
+      <a href="/todo/read?tno=${dto.tno}">${dto.tno}</a>
+    </span>
+    <span>
+      ${dto.title}
+    </span>
+    <span>
+      ${dto.dueDate}
+    </span>
+    <span>
+      ${dto.finished ? "완료" : "미완료"}
+    </span>
+  </li>
 </c:forEach>
 </ul>
 </body>

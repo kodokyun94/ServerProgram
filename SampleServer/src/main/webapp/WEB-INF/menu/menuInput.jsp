@@ -7,12 +7,12 @@
 <h1><%= "menuInput.jsp" %></h1>
 <br>
 <h1><%= "임시 input화면" %></h1>
-<form method="post" action="/menu/list">
+<form method="post" action="/menu/input">
     <div>
-        <input type="text" name="title" placeholder="제목을 입력해주세요">
+        <input type="text" name="menuTitle" placeholder="제목을 입력해주세요">
     </div>
     <div>
-        <input type="date" name="dueDate" >
+        <input type="date" name="menuRegDate" >
     </div>
     <div>
         <button type="reset">리셋</button>

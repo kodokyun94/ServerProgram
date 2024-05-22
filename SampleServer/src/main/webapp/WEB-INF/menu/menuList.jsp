@@ -6,8 +6,19 @@
 </head>
 <body>
 <ul>
+    <button><a href="/menu/input">Menu 작성</a></button>
     <c:forEach items="${list}" var = "dto">
-        <li>${dto}</li>
+        <li>
+    <span>
+      <a href="/menu/read?menuNo=${dto.menuNo}">${dto.menuNo}</a>
+    </span>
+            <span>
+                    ${dto.menuTitle}
+            </span>
+            <span>
+                    ${dto.menuRegDate}
+            </span>
+        </li>
     </c:forEach>
 </ul>
 </body>

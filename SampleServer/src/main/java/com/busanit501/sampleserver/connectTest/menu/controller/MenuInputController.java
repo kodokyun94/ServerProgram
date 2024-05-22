@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 
-@WebServlet (name = "MenuController", urlPatterns = "/menu")
-public class MenuController extends HttpServlet {
+@WebServlet (name = "MenuController", urlPatterns = "/menu/input")
+public class MenuInputController extends HttpServlet {
     private MenuService menuService = MenuService.INSTANCE;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,13 +26,11 @@ public class MenuController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         MenuDTO menuDTO = MenuDTO.builder()
                 .menuTitle(req.getParameter("menuTitle"))
-                .menuRegDate(LocalDate.parse(req.getParameter("dueDate")))
+                .menuRegDate(LocalDate.parse(req.getParameter("menuRegDate")))
                 .build();
-
-
         try {
             menuService.register(menuDTO);
-            resp.sendRedirect("/WEB-INF/menu/menuList.jsp");
+            resp.sendRedirect("/menu/list");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

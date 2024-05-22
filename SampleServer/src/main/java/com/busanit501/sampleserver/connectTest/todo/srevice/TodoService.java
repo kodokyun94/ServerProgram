@@ -47,7 +47,10 @@ public enum TodoService {
     }
 
     //수정
-
+    public void updateTodo(TodoDTO todoDTO) throws Exception{
+        TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
+        todoDAO.update(todoVO);
+    }
 
     //쓰기
     public void register2(TodoDTO todoDTO) throws Exception{
@@ -58,7 +61,9 @@ public enum TodoService {
     }
 
     //삭제
-
+    public void deleteTodo(Long tno) throws Exception {
+       todoDAO.delete(tno);
+    }
 
 
     ///////////////////////////////////////////////////////
