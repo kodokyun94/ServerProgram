@@ -6,7 +6,18 @@
 </head>
 <body>
 <ul>
-    <button><a href="/menu/input">Menu 작성</a></button>
+    <h1>${memberDTO.mname}님 환영합니다.</h1>
+    <div>
+        <form method="post" action="/logout-menu">
+            <button type="submit">로그아웃</button>
+        </form>
+    </div>
+    <div>
+        <form method="post" action="/noauto-menu">
+            <button type="submit">자동로그인해제</button>
+        </form>
+    </div>
+    <button><a href="/menu/input">Todo 작성</a></button>
     <c:forEach items="${list}" var = "dto">
         <li>
     <span>
@@ -18,6 +29,7 @@
             <span>
                     ${dto.menuRegDate}
             </span>
+
         </li>
     </c:forEach>
 </ul>

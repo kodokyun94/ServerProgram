@@ -1,4 +1,4 @@
-package com.busanit501.sampleserver.connectTest.todo.srevice;
+package com.busanit501.sampleserver.connectTest.todo.service;
 
 import com.busanit501.sampleserver.connectTest.todo.dto.TodoDTO;
 

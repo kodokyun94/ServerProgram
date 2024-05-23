@@ -1,7 +1,7 @@
 package com.busanit501.sampleserver.connectTest.filter;
 
-import com.busanit501.sampleserver.connectTest.todo.dto.MemberDTO;
-import com.busanit501.sampleserver.connectTest.todo.service.MemberService;
+import com.busanit501.sampleserver.connectTest.menu.dto.MenuMemberDTO;
+import com.busanit501.sampleserver.connectTest.menu.service.MenuMemberService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.*;
@@ -15,8 +15,8 @@ import java.util.Arrays;
 import java.util.Optional;
 
 @Log4j2
-@WebFilter (urlPatterns = "/todo/*")
-public class LoginFilter implements Filter {
+@WebFilter (urlPatterns = "/menu/*")
+public class LoginFilter2 implements Filter {
 
 
     @Override
@@ -36,18 +36,19 @@ public class LoginFilter implements Filter {
         Cookie cookie = findCookie(req.getCookies(),"remember-me");
 
         if(cookie == null) {
-            resp.sendRedirect("/login");
+            resp.sendRedirect("/login-menu");
             return;
         }
 
         String uuid = cookie.getValue();
         try {
-           MemberDTO memberDTO = MemberService.INSTANCE.selectUUID(uuid);
-           if(memberDTO == null) {
+           MenuMemberDTO menuMemberDTO = MenuMemberService.INSTANCE.selectUUID(uuid);
+           if(menuMemberDTO == null) {
                throw new Exception("쿠키 값에 해당하는 유저가 없음");
            }
 
-           session.setAttribute("loginInfo", memberDTO);
+           session.setAttribute("loginInfo", menuMemberDTO);
+            filterChain.doFilter(servletRequest, servletResponse);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

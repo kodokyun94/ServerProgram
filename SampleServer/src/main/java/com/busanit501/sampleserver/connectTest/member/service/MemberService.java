@@ -23,5 +23,6 @@ public enum MemberService {
             return dto;
         }).collect(Collectors.toList());
         return listSample;
-    };
+    }
+
 }

@@ -35,7 +35,7 @@ public class MenuDAO {
     public MenuVO selectOne(Long menuNo) throws Exception {
         String sql = "select * from lunchMenu where menuNo = ?";
         //1)
-        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup Connection conn = com.busanit501.sampleserver.connectTest.todo.dao.ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setLong(1, menuNo);
         @Cleanup ResultSet resultSet = pstmt.executeQuery();
@@ -53,7 +53,7 @@ public class MenuDAO {
     public void insert(MenuVO menuVO1) throws Exception {
         String sql = "insert into lunchMenu (menuTitle, menuRegDate) values (?,?)";
 
-        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup Connection conn = com.busanit501.sampleserver.connectTest.todo.dao.ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1,menuVO1.getMenuTitle());
         pstmt.setDate(2, Date.valueOf(menuVO1.getMenuRegDate()));;
@@ -63,7 +63,7 @@ public class MenuDAO {
     public void  delete(Long menuNo) throws Exception {
         String sql = "delete from lunchMenu where menuNo=?";
 
-        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup Connection conn = com.busanit501.sampleserver.connectTest.todo.dao.ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setLong(1,menuNo);
         @Cleanup ResultSet resultSet = pstmt.executeQuery();

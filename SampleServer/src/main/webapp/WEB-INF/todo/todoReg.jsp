@@ -2,22 +2,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JSP-Model2(MVC) - todolist</title>
+  <title>JSP-Model2(MVC)-todoReg</title>
 </head>
 <body>
-<h1><%= "todoReg.jsp" %></h1>
-<br>
-<h1><%= "임시 Reg화면" %></h1>
-<form method="post" action="/todo/register">
+<h1><%= "임시 todoReg 화면." %>
+</h1>
+<form method="post" action="/todo/register ">
   <div>
-  <input type="text" name="title" placeholder="제목을 입력해주세요">
+    <input type="text" name="title" placeholder="제목을 입력해주세요.">
   </div>
   <div>
-    <input type="date" name="dueDate" >
+    <input type="date" name="dueDate">
   </div>
   <div>
-    <button type="reset">리셋</button>
-  <button type="submit">작성</button>
+    <button type="reset">초기화</button>
+    <button type="submit">작성</button>
   </div>
 </form>
 </body>

@@ -13,25 +13,35 @@
     <form method="post" action="/logout">
       <button type="submit">로그아웃</button>
     </form>
-
   </div>
-  <button><a href="/todo/register">Todo 작성</a></button>
-<c:forEach items="${list}" var = "dto">
-  <li>
-    <span>
-      <a href="/todo/read?tno=${dto.tno}">${dto.tno}</a>
-    </span>
-    <span>
-      ${dto.title}
-    </span>
-    <span>
-      ${dto.dueDate}
-    </span>
-    <span>
-      ${dto.finished ? "완료" : "미완료"}
-    </span>
-  </li>
-</c:forEach>
+  <c:if test="${memberDTO.autoLogined == true}">
+    <div>
+      <form method="post" action="/noauto">
+        <h1>공용으로 사용하는 공간에서는 꼭 자동로그인 해제 해주세요!!</h1>
+        <button type="submit">자동로그인해제</button>
+      </form>
+    </div>
+  </c:if>
+  <button><a href="/todo/register">Todo작성</a></button>
+  <%--  서버 컨트롤러에서 전달 받은 박스, 라벨 이름: list, --%>
+  <%--  내용물: 디비에서 가져온 10개의 값--%>
+  <c:forEach items="${list}" var="dto">
+    <li>
+      <span>
+        <a href="/todo/read?tno=${dto.tno}">${dto.tno}</a>
+      </span>
+      <span>
+          ${dto.title}
+      </span>
+      <span>
+          ${dto.dueDate}
+      </span>
+      <span>
+          ${dto.finished ? "완료" : "미완료"}
+      </span>
+    </li>
+  </c:forEach>
 </ul>
+
 </body>
 </html>
