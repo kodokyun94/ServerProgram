@@ -1,15 +1,18 @@
-package com.busanit501.sampleserver;
+package com.busanit501.sampleserver.connectTest;
 
-import java.io.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
-public class HelloServlet extends HttpServlet {
+@WebServlet(name = "test", urlPatterns = "/my2")
+public class Hellotest extends HttpServlet {
     private String message;
 
     public void init() {
-        message = "Hello World!";
+        message = "오늘 점심 도시락 먹음";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
