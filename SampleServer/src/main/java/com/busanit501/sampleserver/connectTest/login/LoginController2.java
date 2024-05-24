@@ -40,6 +40,7 @@ public class LoginController2 extends HttpServlet {
             // 아직, uuid 가 없음.
             //MemberDTO memberDTO = MemberService.INSTANCE.getSelectOneMember(mid, mpw);
             MenuMemberDTO menuMemberDTO = MenuMemberService.INSTANCE.getSelectOneMember(mid,mpw);
+
             // 자동로그인 여부가 체크가 되었다면.
             if (rememberMe) {
                 // 랜덤한 문자열을 생성.
@@ -62,6 +63,8 @@ public class LoginController2 extends HttpServlet {
                 //세션의 정보를 저장.
                 // memberDTO 여기에 어떤 정보가 있나요? mid, mpw, mname, uuid(방금추가됨)
                 session.setAttribute("loginInfo", menuMemberDTO);
+
+
                 resp.sendRedirect("/menu/list");
             } else {
                 HttpSession session = req.getSession();

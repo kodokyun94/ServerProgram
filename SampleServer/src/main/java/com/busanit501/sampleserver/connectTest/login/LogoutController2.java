@@ -21,5 +21,8 @@ public class LogoutController2 extends HttpServlet {
         session.invalidate();
 
         resp.sendRedirect("/login-menu");
+
+
+
     }
 }

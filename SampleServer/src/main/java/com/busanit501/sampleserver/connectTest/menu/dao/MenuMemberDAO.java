@@ -17,6 +17,7 @@ public class MenuMemberDAO {
         pstmt.setString(1, mid);
         pstmt.setString(2, mpw);
         @Cleanup ResultSet resultSet = pstmt.executeQuery();
+
         resultSet.next();
 
         MenuMemberVO menuMemberVO = MenuMemberVO.builder()
