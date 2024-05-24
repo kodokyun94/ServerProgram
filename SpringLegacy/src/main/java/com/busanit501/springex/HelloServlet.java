@@ -1,4 +1,4 @@
-package com.busanit501.springlegacy;
+package com.busanit501.springex;
 
 import java.io.*;
 import javax.servlet.http.*;
